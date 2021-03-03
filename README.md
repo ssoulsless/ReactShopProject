@@ -1,4 +1,4 @@
 # React Shop Portfolio Project
 
-[Demo] (https://ssoulsless.github.io/ReactShopProject).
+[Demo](https://ssoulsless.github.io/ReactShopProject).
 
