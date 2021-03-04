@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { ShopContext } from '../context';
+import { useContext } from 'react';
 
 function CartItem(props) {
 	const {
@@ -7,10 +9,11 @@ function CartItem(props) {
 		displayName,
 		price,
 		quantity,
-		removeFromCart = Function.prototype,
-		decrementQuantity = Function.prototype,
-		incrementQuantity = Function.prototype,
 	} = props;
+	const { removeFromCart, decrementQuantity, incrementQuantity } = useContext(
+		ShopContext
+	);	
+
 	return (
 		<div>
 			<li className='collection-item'>

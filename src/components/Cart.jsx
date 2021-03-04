@@ -1,12 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { ShopContext } from '../context';
+import { useContext } from 'react';
 
-function Cart(props) {
-	const { quantity = 0, handleCartOpen = Function.prototype } = props;
+function Cart() {
+	const { handleCartOpen, order } = useContext(ShopContext);
+
+	let quantity = 0;
+
+	if (order.length) {
+		for (let i = 0; i < order.length; i++) {
+			quantity += order[i].quantity;
+		}
+	}
+
 	return (
-		<div
-			className='cart purple lighten-2 white-text'
-			onClick={handleCartOpen}>
+		<div className='cart purple lighten-2 white-text' onClick={handleCartOpen}>
 			<i className='material-icons'>shopping_cart</i>
 			{quantity ? <span className='cart-quantity'>{quantity}</span> : null}
 		</div>
@@ -14,8 +22,3 @@ function Cart(props) {
 }
 
 export { Cart };
-
-Cart.propTypes = {
-	quantity: PropTypes.number.isRequired,
-	handleCartOpen: PropTypes.func.isRequired,
-};

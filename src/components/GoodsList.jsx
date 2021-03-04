@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { GoodsItem } from './GoodsItem';
+import { ShopContext } from '../context';
+import { useContext } from 'react';
 
-function GoodsList(props) {
-	const { goods = [], addToCart = Function.prototype } = props;
+function GoodsList() {
+	const { goods=[] } = useContext(ShopContext);
 
 	if (!goods.length) {
 		return <h3>Nothing There</h3>;
@@ -11,7 +13,7 @@ function GoodsList(props) {
 	return (
 		<div className='goods'>
 			{goods.map((item) => (
-				<GoodsItem key={item.mainId} {...item} addToCart={addToCart} />
+				<GoodsItem key={item.mainId} {...item} />
 			))}
 		</div>
 	);

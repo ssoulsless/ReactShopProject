@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { CartItem } from './CartItem';
+import { ShopContext } from '../context';
+import { useContext } from 'react';
 
-function CartList(props) {
+function CartList() {
 	const {
-		order = [],
-		handleCartOpen = Function.prototype,
-		removeFromCart = Function.prototype,
-		decrementQuantity = Function.prototype,
-		incrementQuantity = Function.prototype,
-	} = props;
+		order,
+		handleCartOpen,
+	} = useContext(ShopContext);
 
 	let totalPrice = order.reduce((sum, el) => {
 		return (sum += el.price.regularPrice * el.quantity);
@@ -25,9 +24,6 @@ function CartList(props) {
 					<CartItem
 						key={item.mainId}
 						{...item}
-						removeFromCart={removeFromCart}
-						decrementQuantity={decrementQuantity}
-						incrementQuantity={incrementQuantity}
 					/>
 				))
 			) : (

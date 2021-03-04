@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { ShopContext } from '../context';
+import { useContext } from 'react';
 
 function GoodsItem(props) {
 	const {
@@ -8,8 +10,10 @@ function GoodsItem(props) {
 		displayName,
 		mainId,
 		price,
-		addToCart = Function.prototype,
 	} = props;
+
+	const { addToCart } = useContext(ShopContext);
+
 	return (
 		<div className='card'>
 			<div className='card-image'>
